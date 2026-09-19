@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cassino</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header id="topbar">
+  <h1>Cassino</h1>
+  <div id="status">
+    <span id="turn-banner">—</span>
+    <span class="stat">Talon: <strong id="talon-count">0</strong></span>
+    <span class="stat">Sweeps — You: <strong id="sweeps-you">0</strong> · Computer: <strong id="sweeps-computer">0</strong></span>
+  </div>
+  <button id="new-deal-btn">New deal</button>
+</header>
+
+<main>
+  <details id="rules-panel" open>
+    <summary>How to play</summary>
+    <div id="rules-body">
+      <p><strong>Card values:</strong> A = 1, 2–10 = face value, J = 11, Q = 12, K = 13. Suit doesn't affect value.</p>
+      <p><strong>On your turn, do one of two things:</strong></p>
+      <ul>
+        <li><strong>Capture</strong> — select one or more cards from your hand and one or more cards from the table whose values add up to the same total. All of those cards go to your pile. Clearing the whole table this way is a <em>sweep</em>, worth an extra point.</li>
+        <li><strong>Place</strong> — select just one card from your hand and no table cards, to put it face up on the table instead. You can do this any time, even if a capture is available.</li>
+      </ul>
+      <p>Once both hands are empty, you're each dealt three more cards from the talon and play continues, until the talon and every hand are empty.</p>
+    </div>
+  </details>
+
+  <section class="row" id="computer-row">
+    <h2>Computer</h2>
+    <div class="cards" id="computer-hand"></div>
+  </section>
+
+  <section class="row" id="table-row">
+    <h2>Table</h2>
+    <div class="cards" id="table-cards"></div>
+  </section>
+
+  <section class="row" id="player-row">
+    <h2>Your hand</h2>
+    <div class="cards" id="player-hand"></div>
+  </section>
+
+  <div id="controls">
+    <button id="play-btn" disabled>Play selected</button>
+    <button id="clear-btn">Clear selection</button>
+    <span id="message"></span>
+  </div>
+
+  <details id="options-panel" open>
+    <summary>Your options this turn</summary>
+    <ul id="options-list"></ul>
+  </details>
+
+  <section id="log-panel">
+    <h2>What happened</h2>
+    <ol id="log"></ol>
+  </section>
+</main>
+
+<div id="result-overlay" class="hidden">
+  <div id="result-card">
+    <h2 id="result-title">Deal over</h2>
+    <table id="result-table">
+      <thead>
+        <tr><th></th><th>You</th><th>Computer</th></tr>
+      </thead>
+      <tbody id="result-body"></tbody>
+    </table>
+    <p id="result-leftover-note" class="hidden"></p>
+    <button id="result-new-deal-btn">Play another deal</button>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
